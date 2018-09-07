@@ -1,6 +1,7 @@
 package myPackage;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,8 +36,7 @@ public class DAO {
 		
 		PreparedStatement stmt = null;
 		try {
-			stmt = connection.
-					prepareStatement("SELECT * FROM PESSOAS");
+			stmt = connection.prepareStatement("SELECT * FROM users");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,12 +52,11 @@ public class DAO {
 		try {
 			while (rs.next()) {
 				Users user = new Users();
-				user.setId(rs.getInt("id"));
-				user.setNome(rs.getString("nome"));
-				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("nascimento"));
-				user.setNascimento(data);
-				user.setAltura(rs.getDouble("altura"));
+				user.setName(rs.getString("name"));
+				user.setSurname(rs.getString("surname"));
+				user.setUsername(rs.getString("username"));
+				user.setAge(rs.getInt("age"));
+				user.setEmail(rs.getString("email"));
 				users.add(user);
 				
 			rs.close();
@@ -71,6 +70,34 @@ public class DAO {
 	
 	return users;
 	}
+	
+	public void close() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+	
+	public void adiciona(Users user) {
+		String sql = "INSERT INTO user" + "(name, surname, username, age, email) values(?,?,?,?,?)";
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement(sql);
+			stmt.setString(1, user.getName());
+			stmt.setString(2, user.getSurname());
+			stmt.setString(3, user.getUsername());
+			stmt.setInt(4,user.getAge());
+			stmt.setString(5, user.getEmail());
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 
 }

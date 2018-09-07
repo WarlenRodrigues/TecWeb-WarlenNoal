@@ -6,9 +6,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet("/list")
+@WebServlet("/lista")
 
-public class List extends HttpServlet {
+public class Lista extends HttpServlet {
 	
 	protected void service (HttpServletRequest request,
 							HttpServletResponse response)
@@ -21,15 +21,19 @@ public class List extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println("<html><body><table border='1'>");
-		out.println("<tr><td>ID</td><td>Nome</td></tr>" +
-				"<td>Nascimento</td><td>Altura</td></tr>");
+		out.println("<tr><td>Nome</td><td>Sobrenome</td></tr>" +
+				"<td>Usuário</td><td>Idade</td><td>E-mail</td></tr>");
 		for (Users user : users) {
-			out.println("<tr><td>"+user.getId() +	"</td>");
-			out.println("<td>" + user.getNome() +	"</td>");
-			out.println("<td>" + user.getNascimento().getTime() +	"</td>");
-			out.println("<td>" + user.getAltura()	+ "</td></tr>");
+			out.println("<tr><td>" + user.getName() +	"</td>");
+			out.println("<td>" + user.getSurname() +	"</td>");
+			out.println("<td>" + user.getUsername() +	"</td>");
+			out.println("<td>" + user.getAge()	+ "</td></tr>");
+			out.println("<td>" + user.getEmail() +	"</td>");
+
 		}
 		out.println("</table><body><html>");
+		dao.close();
 	}
+	
 	
 }
