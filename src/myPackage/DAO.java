@@ -102,6 +102,14 @@ public class DAO {
 		String sql = "UPDATE users SET" + "surname=?, username=?, age=?, email=? WHERE name=?";	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, user.getName());
+			stmt.setString(2, user.getSurname());
+			stmt.setString(3, user.getUsername());
+			stmt.setInt(4,user.getAge());
+			stmt.setString(5, user.getEmail());
+			stmt.execute();
+			stmt.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
