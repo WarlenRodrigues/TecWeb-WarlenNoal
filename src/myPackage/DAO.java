@@ -97,7 +97,17 @@ public class DAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void altera(Users user) {
+		String sql = "UPDATE users SET" + "surname=?, username=?, age=?, email=? WHERE name=?";	
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 
 }
