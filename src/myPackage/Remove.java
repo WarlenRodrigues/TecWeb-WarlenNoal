@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 public class Remove extends HttpServlet {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
@@ -30,7 +35,7 @@ public class Remove extends HttpServlet {
 	 HttpServletResponse response)
 	 throws ServletException, IOException {
 	 DAO dao = new DAO();
-	 dao.remove(Integer.valueOf(request.getParameter("user_id")));
+	 dao.remove(Integer.valueOf(request.getParameter("id")));
 	 PrintWriter out = response.getWriter();
 	 out.println("<html><body>");
 	 out.println("removido ");

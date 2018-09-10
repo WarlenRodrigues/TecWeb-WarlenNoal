@@ -50,17 +50,17 @@ public class DAO {
 		try {
 			while (rs.next()) {
 				Users user = new Users();
-//				user.setId(rs.getInt("user_id"));
+				user.setId(rs.getInt("user_id"));
 				user.setName(rs.getString("name"));
 				user.setSurname(rs.getString("surname"));
 				user.setUsername(rs.getString("username"));
 				user.setAge(rs.getInt("age"));
 				user.setEmail(rs.getString("email"));
-				users.add(user);
-				
+				users.add(user);				
+
+			}
 			rs.close();
 			stmt.close();
-			} 
 			
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -98,7 +98,7 @@ public class DAO {
 	}
 	
 	public void altera(Users user) {
-		String sql = "UPDATE user SET" + "name=?, surname=?, username=?, age=?, email=? WHERE user_id=?";	
+		String sql = "UPDATE user SET " + "name=?, surname=?, username=?, age=?, email=? WHERE user_id=?";	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getName());
@@ -119,7 +119,7 @@ public class DAO {
 	public void remove(Integer id) {
 		PreparedStatement stmt;
 		try {
-			stmt = connection.prepareStatement("DELETE FROM users WHERE user_id=?");
+			stmt = connection.prepareStatement("DELETE FROM user WHERE user_id=?");
 			stmt.setLong(1, id);
 			stmt.execute();
 			stmt.close();
