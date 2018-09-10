@@ -1,13 +1,11 @@
 package myPackage;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import myPackage.Users;
@@ -36,7 +34,7 @@ public class DAO {
 		
 		PreparedStatement stmt = null;
 		try {
-			stmt = connection.prepareStatement("SELECT * FROM users");
+			stmt = connection.prepareStatement("SELECT * FROM user");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,6 +50,7 @@ public class DAO {
 		try {
 			while (rs.next()) {
 				Users user = new Users();
+//				user.setId(rs.getInt("user_id"));
 				user.setName(rs.getString("name"));
 				user.setSurname(rs.getString("surname"));
 				user.setUsername(rs.getString("username"));
@@ -82,8 +81,8 @@ public class DAO {
 	
 	public void adiciona(Users user) {
 		String sql = "INSERT INTO user" + "(name, surname, username, age, email) values(?,?,?,?,?)";
-		PreparedStatement stmt = null;
 		try {
+			PreparedStatement stmt = null;
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getName());
 			stmt.setString(2, user.getSurname());
@@ -99,7 +98,7 @@ public class DAO {
 	}
 	
 	public void altera(Users user) {
-		String sql = "UPDATE users SET" + "surname=?, username=?, age=?, email=? WHERE name=?";	
+		String sql = "UPDATE user SET" + "name=?, surname=?, username=?, age=?, email=? WHERE user_id=?";	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getName());
@@ -107,6 +106,7 @@ public class DAO {
 			stmt.setString(3, user.getUsername());
 			stmt.setInt(4,user.getAge());
 			stmt.setString(5, user.getEmail());
+			stmt.setInt(6, user.getId());
 			stmt.execute();
 			stmt.close();
 
@@ -116,6 +116,18 @@ public class DAO {
 		}
 	}
 	
+	public void remove(Integer id) {
+		PreparedStatement stmt;
+		try {
+			stmt = connection.prepareStatement("DELETE FROM users WHERE user_id=?");
+			stmt.setLong(1, id);
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		}
 
 
 }

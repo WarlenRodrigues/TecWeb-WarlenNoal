@@ -1,7 +1,6 @@
 package myPackage;
 
 import java.io.*;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/cria")
 
 public class Cria extends HttpServlet {
-	
+
+
 	@Override
 	protected void doGet (HttpServletRequest request,
 			HttpServletResponse response)
@@ -22,7 +22,7 @@ public class Cria extends HttpServlet {
 		out.println("<form method='post'>");
 		out.println("Nome: <input type='text' name='name'><br>");
 		out.println("Sobrenome: <input type='text' name='surname'><br>");
-		out.println("Usuário: <input type='text' name='username'><br>");
+		out.println("Usuario: <input type='text' name='username'><br>");
 		out.println("Idade: <input type='number' name='age' step='1'><br>");
 		out.println("E-mail: <input type='text' name='email'><br>");
 		out.println("<input type='submit' value='Submit'>");
@@ -48,7 +48,7 @@ public class Cria extends HttpServlet {
 			
 			PrintWriter out = response.getWriter();
 			out.println("<html><body>");
-			out.println("adicionado" + user.getName());
+			out.println("adicionado " + user.getName());
 			out.println("</body></html>");
 			
 			dao.close();
