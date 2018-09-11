@@ -73,6 +73,7 @@ public class DAO {
 				user.setUsername(rs.getString("username"));
 				user.setAge(rs.getInt("age"));
 				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
 				users.add(user);				
 
 			}
@@ -88,7 +89,7 @@ public class DAO {
 	}
 	
 	public void adicionaUser(Users user) {
-		String sql = "INSERT INTO user" + "(name, surname, username, age, email) values(?,?,?,?,?)";
+		String sql = "INSERT INTO user" + "(name, surname, username, age, email, password) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = null;
 			stmt = connection.prepareStatement(sql);
@@ -97,6 +98,7 @@ public class DAO {
 			stmt.setString(3, user.getUsername());
 			stmt.setInt(4,user.getAge());
 			stmt.setString(5, user.getEmail());
+			stmt.setString(6, user.getPassword());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -106,7 +108,7 @@ public class DAO {
 	}
 	
 	public void alteraUser(Users user) {
-		String sql = "UPDATE user SET " + "name=?, surname=?, username=?, age=?, email=? WHERE user_id=?";	
+		String sql = "UPDATE user SET " + "name=?, surname=?, username=?, age=?, email=?, password =? WHERE user_id=?";	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getName());
@@ -114,6 +116,7 @@ public class DAO {
 			stmt.setString(3, user.getUsername());
 			stmt.setInt(4,user.getAge());
 			stmt.setString(5, user.getEmail());
+			stmt.setString(6, user.getPassword());
 			stmt.setInt(6, user.getId());
 			stmt.execute();
 			stmt.close();
@@ -171,7 +174,6 @@ public class DAO {
 				nota.setContent(rs.getString("content"));
 				nota.setUserID(rs.getInt("user_id"));
 				notas.add(nota);				
-
 			}
 			rs.close();
 			stmt.close();
@@ -230,6 +232,22 @@ public class DAO {
 			}
 		}
 
-
-
+//	--------------------------------
+	
+//	AUTENTICAÇÃO/LOGIN
+//
+//	public void autenticaUsuario(Tentativas tentativa) {
+//		PreparedStatement stmt;
+//		try {
+//			stmt = connection.prepareStatement("SELECT * FROM user WHERE user_id=?");
+//			stmt.setLong(1, id);
+//			stmt.execute();
+//			stmt.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			}
+//		}
+	
+	
 }

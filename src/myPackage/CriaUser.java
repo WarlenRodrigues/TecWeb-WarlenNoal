@@ -30,6 +30,7 @@ public class CriaUser extends HttpServlet {
 		out.println("Usuario: <input type='text' name='username'><br>");
 		out.println("Idade: <input type='number' name='age' step='1'><br>");
 		out.println("E-mail: <input type='text' name='email'><br>");
+		out.println("Senha: <input type='password' name='password'><br>");		
 		out.println("<input type='submit' value='Submit'>");
 		out.println("</form>");
 		out.println("<body><html>");
@@ -48,12 +49,13 @@ public class CriaUser extends HttpServlet {
 			user.setUsername(request.getParameter("username"));
 			user.setAge(Integer.parseInt(request.getParameter("age")));
 			user.setEmail(request.getParameter("email"));
+			user.setPassword(request.getParameter("password"));
 			
 			dao.adicionaUser(user);
 			
 			PrintWriter out = response.getWriter();
 			out.println("<html><body>");
-			out.println("adicionado " + user.getName());
+			out.println("Bem Vindo(a) " + user.getName());
 			out.println("</body></html>");
 			
 			dao.close();

@@ -9,6 +9,7 @@ public class Users {
 	private String username;
 	private Integer age;
 	private String email;
+	private String password;
 	
 	public Integer getId() {return this.id;}
 	public void setId(Integer id) {this.id = id;}
@@ -28,4 +29,6 @@ public class Users {
 	public	String getEmail(){ return this.email;}	
 	public void setEmail(String email){	this.email = email;}
 
+	public	String getPassword(){ return this.password;}	
+	public void setPassword(String password){	this.password = password;}
 }

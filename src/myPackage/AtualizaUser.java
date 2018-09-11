@@ -27,9 +27,10 @@ public class AtualizaUser extends HttpServlet {
 		out.println("ID: <input type='number' name='user_id'><br>");
 		out.println("Nome: <input type='text' name='name'><br>");
 		out.println("Sobrenome: <input type='text' name='surname'><br>");
-		out.println("Usuário: <input type='text' name='username'><br>");
+		out.println("Usuario: <input type='text' name='username'><br>");
 		out.println("Idade: <input type='number' name='age' step='1'><br>");
 		out.println("E-mail: <input type='text' name='email'><br>");
+		out.println("Senha: <input type='password' name='password'><br>");
 		out.println("<input type='submit' value='Submit'>");
 		out.println("</form>");
 		out.println("<body><html>");
@@ -49,12 +50,13 @@ public class AtualizaUser extends HttpServlet {
 			user.setUsername(request.getParameter("username"));
 			user.setAge(Integer.parseInt(request.getParameter("age")));
 			user.setEmail(request.getParameter("email"));
+			user.setPassword(request.getParameter("password"));
 			
 			dao.alteraUser(user);
 			
 			PrintWriter out = response.getWriter();
 			out.println("<html><body>");
-			out.println("atualizado " + user.getName());
+			out.println("Cadastro atualizado com sucesso! :D");
 			out.println("</body></html>");
 			
 			dao.close();
