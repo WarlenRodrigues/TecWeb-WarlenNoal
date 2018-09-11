@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/cria")
+@WebServlet("/atualizauser")
 
-public class Cria extends HttpServlet {
-
+public class AtualizaUser extends HttpServlet {
 
 	/**
 	 * 
@@ -25,9 +24,10 @@ public class Cria extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<form method='post'>");
+		out.println("ID: <input type='number' name='user_id'><br>");
 		out.println("Nome: <input type='text' name='name'><br>");
 		out.println("Sobrenome: <input type='text' name='surname'><br>");
-		out.println("Usuario: <input type='text' name='username'><br>");
+		out.println("Usuário: <input type='text' name='username'><br>");
 		out.println("Idade: <input type='number' name='age' step='1'><br>");
 		out.println("E-mail: <input type='text' name='email'><br>");
 		out.println("<input type='submit' value='Submit'>");
@@ -43,17 +43,18 @@ public class Cria extends HttpServlet {
 			DAO dao = new DAO();
 			
 			Users user = new Users();
+			user.setId(Integer.valueOf(request.getParameter("user_id")));
 			user.setName(request.getParameter("name"));
 			user.setSurname(request.getParameter("surname"));
 			user.setUsername(request.getParameter("username"));
 			user.setAge(Integer.parseInt(request.getParameter("age")));
 			user.setEmail(request.getParameter("email"));
 			
-			dao.adiciona(user);
+			dao.alteraUser(user);
 			
 			PrintWriter out = response.getWriter();
 			out.println("<html><body>");
-			out.println("adicionado " + user.getName());
+			out.println("atualizado " + user.getName());
 			out.println("</body></html>");
 			
 			dao.close();

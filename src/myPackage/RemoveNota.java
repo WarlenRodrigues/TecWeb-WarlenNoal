@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/remove")
+@WebServlet("/removenota")
 
-public class Remove extends HttpServlet {
+public class RemoveNota extends HttpServlet {
 
 
 	/**
@@ -35,10 +35,10 @@ public class Remove extends HttpServlet {
 	 HttpServletResponse response)
 	 throws ServletException, IOException {
 	 DAO dao = new DAO();
-	 dao.remove(Integer.valueOf(request.getParameter("id")));
+	 dao.removeNota(Integer.valueOf(request.getParameter("id")));
 	 PrintWriter out = response.getWriter();
 	 out.println("<html><body>");
-	 out.println("removido ");
+	 out.println("Nota Removida");
 	 out.println("</body></html>");
 	 dao.close();
 	 }

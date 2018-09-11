@@ -6,9 +6,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet("/lista")
+@WebServlet("/listauser")
 
-public class Lista extends HttpServlet {
+public class ListaUser extends HttpServlet {
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class Lista extends HttpServlet {
 		
 		DAO dao = new DAO();
 		
-		List<Users> users = dao.getLista();
+		List<Users> users = dao.getListaUser();
 		
 		PrintWriter out = response.getWriter();
 		out.println("<html><body><table border='1'>");
@@ -40,6 +40,5 @@ public class Lista extends HttpServlet {
 		out.println("</table><body><html>");
 		dao.close();
 	}
+}	
 	
-	
-}

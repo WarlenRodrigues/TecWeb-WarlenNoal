@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/atualiza")
+@WebServlet("/crianota")
 
-public class Atualiza extends HttpServlet {
+public class CriaNota extends HttpServlet {
+
 
 	/**
 	 * 
@@ -24,12 +25,8 @@ public class Atualiza extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<form method='post'>");
-		out.println("ID: <input type='number' name='user_id'><br>");
-		out.println("Nome: <input type='text' name='name'><br>");
-		out.println("Sobrenome: <input type='text' name='surname'><br>");
-		out.println("Usuário: <input type='text' name='username'><br>");
-		out.println("Idade: <input type='number' name='age' step='1'><br>");
-		out.println("E-mail: <input type='text' name='email'><br>");
+		out.println("Título: <input type='text' name='title'><br>");
+		out.println("Conteúdo: <textarea name='content' cols='30' rows='7'> </textarea><br>");
 		out.println("<input type='submit' value='Submit'>");
 		out.println("</form>");
 		out.println("<body><html>");
@@ -42,19 +39,16 @@ public class Atualiza extends HttpServlet {
 		
 			DAO dao = new DAO();
 			
+			Notas nota = new Notas();
 			Users user = new Users();
-			user.setId(Integer.valueOf(request.getParameter("user_id")));
-			user.setName(request.getParameter("name"));
-			user.setSurname(request.getParameter("surname"));
-			user.setUsername(request.getParameter("username"));
-			user.setAge(Integer.parseInt(request.getParameter("age")));
-			user.setEmail(request.getParameter("email"));
 			
-			dao.altera(user);
+			nota.setTitle(request.getParameter("title"));
+			nota.setContent(request.getParameter("content"));			
+			dao.adicionaNota(nota, user);
 			
 			PrintWriter out = response.getWriter();
 			out.println("<html><body>");
-			out.println("atualizado " + user.getName());
+			out.println("Nota adicionada: " + nota.getTitle());
 			out.println("</body></html>");
 			
 			dao.close();

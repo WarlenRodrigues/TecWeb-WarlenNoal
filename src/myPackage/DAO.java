@@ -12,6 +12,8 @@ import myPackage.Users;
 
 public class DAO {
 	
+//	CONECTANDO COM  BASE DE DADOS
+	
 	private Connection connection = null;
 	public DAO() {	
 			try {
@@ -27,8 +29,23 @@ public class DAO {
 				e.printStackTrace();
 			}
 	}
+	
+	public void close() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+	
+//	CONEXÃO JÁ ESTABELECIDA
+	
+// -------------------------
 
-	public List<Users> getLista(){
+//	TRATANDO USUÁRIOS
+	
+	public List<Users> getListaUser(){
 		
 		List<Users> users = new ArrayList<Users>();
 		
@@ -70,16 +87,7 @@ public class DAO {
 	return users;
 	}
 	
-	public void close() {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-	
-	public void adiciona(Users user) {
+	public void adicionaUser(Users user) {
 		String sql = "INSERT INTO user" + "(name, surname, username, age, email) values(?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = null;
@@ -97,7 +105,7 @@ public class DAO {
 		}
 	}
 	
-	public void altera(Users user) {
+	public void alteraUser(Users user) {
 		String sql = "UPDATE user SET " + "name=?, surname=?, username=?, age=?, email=? WHERE user_id=?";	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -116,7 +124,7 @@ public class DAO {
 		}
 	}
 	
-	public void remove(Integer id) {
+	public void removeUser(Integer id) {
 		PreparedStatement stmt;
 		try {
 			stmt = connection.prepareStatement("DELETE FROM user WHERE user_id=?");
@@ -128,6 +136,100 @@ public class DAO {
 			e.printStackTrace();
 			}
 		}
+
+
+// FIM DO TRATAMENTO DE USUÁRIOS
+
+// ------------------------------
+
+// TRATANDO NOTAS
+
+	public List<Notas> getListaNotas(){
+		
+		List<Notas> notas = new ArrayList<Notas>();
+		
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement("SELECT * FROM note");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ResultSet rs = null;
+		try {
+			rs = stmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			while (rs.next()) {
+				Notas nota = new Notas();
+				nota.setId(rs.getInt("note_id"));
+				nota.setTitle(rs.getString("title"));
+				nota.setContent(rs.getString("content"));
+				nota.setUserID(rs.getInt("user_id"));
+				notas.add(nota);				
+
+			}
+			rs.close();
+			stmt.close();
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	return notas;
+	}
+	
+	
+	public void adicionaNota(Notas nota, Users user) {
+	String sql = "INSERT INTO note" + "(title, content, user_id) values(?,?)";
+	try {
+		PreparedStatement stmt = null;
+		stmt = connection.prepareStatement(sql);
+		stmt.setString(1, nota.getTitle());
+		stmt.setString(2, nota.getContent());
+		stmt.setInt(3, user.getId());
+		stmt.execute();
+		stmt.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+
+	public void alteraNota(Notas nota, Users user) {
+		String sql = "UPDATE note SET " + "title=?, content=? WHERE note_id=?";	
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, nota.getTitle());
+			stmt.setString(2, nota.getContent());
+			stmt.setInt(3, nota.getId());
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeNota(Integer id) {
+		PreparedStatement stmt;
+		try {
+			stmt = connection.prepareStatement("DELETE FROM note WHERE note_id=?");
+			stmt.setLong(1, id);
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		}
+
 
 
 }
