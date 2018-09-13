@@ -36,5 +36,4 @@ public class ListaNotas extends HttpServlet {
 		dao.close();
 	}
 	
-	
 }

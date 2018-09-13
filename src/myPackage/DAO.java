@@ -172,7 +172,6 @@ public class DAO {
 				nota.setId(rs.getInt("note_id"));
 				nota.setTitle(rs.getString("title"));
 				nota.setContent(rs.getString("content"));
-				nota.setUserID(rs.getInt("user_id"));
 				notas.add(nota);				
 			}
 			rs.close();
@@ -187,14 +186,14 @@ public class DAO {
 	}
 	
 	
-	public void adicionaNota(Notas nota, Users user) {
-	String sql = "INSERT INTO note" + "(title, content, user_id) values(?,?)";
+	public void adicionaNota(Notas nota) {
+	String sql = "INSERT INTO note" + "(title, content, user_id) values(?,?,?)";
 	try {
 		PreparedStatement stmt = null;
 		stmt = connection.prepareStatement(sql);
 		stmt.setString(1, nota.getTitle());
 		stmt.setString(2, nota.getContent());
-		stmt.setInt(3, user.getId());
+		stmt.setInt(3, 0);;
 		stmt.execute();
 		stmt.close();
 	} catch (SQLException e) {
@@ -203,7 +202,7 @@ public class DAO {
 	}
 }
 
-	public void alteraNota(Notas nota, Users user) {
+	public void alteraNota(Notas nota) {
 		String sql = "UPDATE note SET " + "title=?, content=? WHERE note_id=?";	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -235,19 +234,37 @@ public class DAO {
 //	--------------------------------
 	
 //	AUTENTICAÇÃO/LOGIN
-//
-//	public void autenticaUsuario(Tentativas tentativa) {
+//	
+//	public boolean autenticaUsuario(Tentativas tentativa) {
 //		PreparedStatement stmt;
+//		ResultSet rs = null;
 //		try {
-//			stmt = connection.prepareStatement("SELECT * FROM user WHERE user_id=?");
-//			stmt.setLong(1, id);
-//			stmt.execute();
-//			stmt.close();
+//			System.out.println("Entrou na função");
+//			stmt = connection.prepareStatement("SELECT password FROM user WHERE username=?");
+//			stmt.setString(1, tentativa.getUsername());
+//			System.out.println("Ta pegando tudo");
+//			if(stmt.execute()) {
+//				System.out.println("Entrou no If, logo, o usuário está na base de dados");
+//				rs = stmt.executeQuery();
+//				System.out.println(rs);
+//				if(tentativa.getPassword() == rs.getString("password")) {
+//					stmt.close();
+//					return true;
+//				} else {
+//					stmt.close();
+//					return false;
+//				}
+//			} else {
+//				return false;
+//			}	
+//
 //		} catch (SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //			}
-//		}
-	
-	
+//		
+//		return false;
+//	}
+//	
+//	
 }

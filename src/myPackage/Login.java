@@ -7,13 +7,10 @@
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 //
-//@WebServlet("/atualizauser")
+//@WebServlet("/login")
 //
 //public class Login extends HttpServlet {
 //
-//	/**
-//	 * 
-//	 */
 //	private static final long serialVersionUID = 1L;
 //
 //	@Override
@@ -22,11 +19,12 @@
 //			throws ServletException, IOException {
 //		
 //		PrintWriter out = response.getWriter();
+//		
 //		out.println("<html><body>");
 //		out.println("<form method='post'>");
 //		out.println("Usuário: <input type='text' name='username'><br>");
 //		out.println("Senha: <input type='password' name='password'><br>");
-//		out.println("<input type='submit' value='Submit'>");
+//		out.println("<input type='submit' value='Entrar'>");
 //		out.println("</form>");
 //		out.println("<body><html>");
 //		}
@@ -35,21 +33,20 @@
 //	protected void doPost (HttpServletRequest request,
 //			HttpServletResponse response)
 //			throws ServletException, IOException {
-//		
+//
 //			DAO dao = new DAO();
-//			
+//		
 //			Tentativas tentativa = new Tentativas();
 //			tentativa.setUsername(request.getParameter("username"));
 //			tentativa.setPassword(request.getParameter("password"));
-//			
-//			dao.alteraUser(user);
-//			
+//		
+//			dao.autenticaUsuario(tentativa);
+//
 //			PrintWriter out = response.getWriter();
 //			out.println("<html><body>");
-//			out.println("atualizado " + user.getName());
+//			out.println(dao.autenticaUsuario(tentativa));
 //			out.println("</body></html>");
 //			
 //			dao.close();
-//			}
-//			
-//}
+//		}	
+//}	

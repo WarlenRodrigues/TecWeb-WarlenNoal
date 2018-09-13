@@ -1,6 +1,5 @@
 package myPackage;
 
-
 public class Tentativas {
 
 	private String username;
