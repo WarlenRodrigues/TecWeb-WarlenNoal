@@ -15,20 +15,16 @@
 <body class="bg-dark text-light mt-3">
 
   <div class="row">
- 
-    <div class="col-7">
+    <div class="col">
     	<h4 class="m-2 p-1">Bem vindo(a) ao seu Painel de Notas</h4>
-    </div>
-    <div class="col-5 input-group">
-    				<form action="crianota" method='GET'>
-					<input type='submit' value='Criar Nota' class='btn btn-success btn-md m-3 rounded p-1'></form>
-	
-					<form action='atualizanota' method='GET'>
-					<input type='submit' value='Editar Nota' class="btn btn-warning btn-md m-3 rounded p-1 text-light"></form>
-	
-					<form action='removenota'>
-					<input type='submit' value='Remover Nota' class="btn btn-danger btn-md m-3 rounded p-1"></form>  
     </div>   
+  </div>
+  <div class="row">
+	<div class=col-10><p class="m-2 p-1">Crie, edite e remova suas notas. Organizar suas atividades e lembretes nunca foi tão simples!</p></div>
+    <div class="col-2">
+    	<form action="crianota" method='GET'>
+		<button type='submit' class="btn btn-success btn-lg rounded text-loght"><i class="fas fa-plus"></i></button></form>
+    </div> 
   </div>	
   
   <div class="input-group mt-5">
