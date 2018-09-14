@@ -234,37 +234,38 @@ public class DAO {
 //	--------------------------------
 	
 //	AUTENTICAÇÃO/LOGIN
-//	
-//	public boolean autenticaUsuario(Tentativas tentativa) {
-//		PreparedStatement stmt;
-//		ResultSet rs = null;
-//		try {
-//			System.out.println("Entrou na função");
-//			stmt = connection.prepareStatement("SELECT password FROM user WHERE username=?");
-//			stmt.setString(1, tentativa.getUsername());
-//			System.out.println("Ta pegando tudo");
-//			if(stmt.execute()) {
-//				System.out.println("Entrou no If, logo, o usuário está na base de dados");
-//				rs = stmt.executeQuery();
-//				System.out.println(rs);
-//				if(tentativa.getPassword() == rs.getString("password")) {
-//					stmt.close();
-//					return true;
-//				} else {
-//					stmt.close();
-//					return false;
-//				}
-//			} else {
-//				return false;
-//			}	
-//
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			}
-//		
-//		return false;
-//	}
-//	
-//	
+	
+	public boolean autenticaUsuario(Tentativas tentativa) {
+		PreparedStatement stmt;
+		ResultSet rs = null;
+		try {
+			System.out.println("Entrou na função");
+			stmt = connection.prepareStatement("SELECT password FROM user WHERE username=?");
+			stmt.setString(1, tentativa.getUsername());
+			System.out.println("Ta pegando tudo");
+			if(stmt.execute()) {
+				System.out.println("Entrou no If, logo, o usuário está na base de dados");
+				rs = stmt.executeQuery();
+				System.out.println(rs);
+				if(tentativa.getPassword() == rs.getString("password")) {
+					stmt.close();
+					return true;
+				} else {
+					stmt.close();
+					return false;
+				}
+			} else {
+				stmt.close();
+				return false;
+			}	
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		
+		return false;
+	}
+	
+	
 }

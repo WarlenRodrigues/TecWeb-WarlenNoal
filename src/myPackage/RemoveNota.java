@@ -22,12 +22,12 @@ public class RemoveNota extends HttpServlet {
 			HttpServletResponse response)
 					throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-	out.println("<html><body>");
-	out.println("<form method='post'>");
-	out.println("Remover ID: <input type='number' name='id'><br>");
-	out.println("<input type='submit' value='Submit'>");
-	out.println("</form>");
-	out.println("<body><html>");
+//	out.println("<html><body>");
+//	out.println("<form method='post'>");
+//	out.println("Remover ID: <input type='number' name='id'><br>");
+//	out.println("<input type='submit' value='Submit'>");
+//	out.println("</form>");
+//	out.println("<body><html>");
 	}
 
 	@Override
@@ -36,11 +36,13 @@ public class RemoveNota extends HttpServlet {
 	 throws ServletException, IOException {
 	 DAO dao = new DAO();
 	 dao.removeNota(Integer.valueOf(request.getParameter("id")));
-	 PrintWriter out = response.getWriter();			
-	 out.println("<html><body>");
-	 out.println("Nota Removida!");
-	 out.println("<form action='home.jsp'>");
-	 out.println("<input type='submit' value='OK'>");
-	 out.println("</form></body></html>");
+	 dao.close();
+	 request.getRequestDispatcher("home.jsp").forward(request, response);
+//	 PrintWriter out = response.getWriter();			
+//	 out.println("<html><body>");
+//	 out.println("Nota Removida!");
+//	 out.println("<form action='home.jsp'>");
+//	 out.println("<input type='submit' value='OK'>");
+//	 out.println("</form></body></html>");
 	 }
 }

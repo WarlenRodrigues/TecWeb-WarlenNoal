@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="myPackage.*"%>
@@ -12,7 +12,7 @@
 
 <title>Painel de Notas</title>
 </head>
-<body class="bg-dark text-light mt-3">
+<body class="bg-dark text-light mt-3" style="overflow-x: hidden !important">
 
   <div class="row">
     <div class="col">
@@ -31,15 +31,16 @@
 	<% DAO dao = new DAO();
 	List<Notas> notas = dao.getListaNotas();
 	for (Notas nota : notas) { %>
-		<div class="card mt-4 mb-2 ml-4 mr-4 p-1 text-dark" style="width: 17rem;">
+		<div class="card mt-4 mb-2 ml-4 mr-4 p-1 text-dark" style="width: 17rem; min-height: 15rem;">
   			<div class="card-body">
     			<h5 class="card-title"><%=nota.getTitle()%></h5>
     			<p class="card-text"><%=nota.getContent()%></p>
-					<div class="input-group btn-group" role="group">
+					<div class="input-group btn-group align-bottom" role="group">
 						<form action='atualizanota' method='GET'>
 						<button type='submit' class="bg-light btn btn-outline-warning btn-sm btn-secondary rounded border border-warning text-warning m-1"><i class="far fa-edit"></i></button></form>
 	
-						<form action='removenota'>
+						<form action='removenota' method="POST">
+						<input type="text" name="id" value="<%=nota.getId()%>" style="display: none">
 						<button type='submit' class="bg-light btn btn-outlinr-danger btn-sm btn-secondary rounded border border-danger text-danger m-1"><i class="far fa-trash-alt"></i></button></form>
  					</div>
   			</div>
