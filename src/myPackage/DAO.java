@@ -243,11 +243,11 @@ public class DAO {
 			stmt = connection.prepareStatement("SELECT password FROM user WHERE username=?");
 			stmt.setString(1, tentativa.getUsername());
 			System.out.println("Ta pegando tudo");
-			if(stmt.execute()) {
+			rs = stmt.executeQuery();
+			if(rs.next()) {
 				System.out.println("Entrou no If, logo, o usuário está na base de dados");
-				rs = stmt.executeQuery();
-				System.out.println(rs);
-				if(tentativa.getPassword() == rs.getString("password")) {
+				System.out.println(tentativa.getPassword());
+				if(tentativa.getPassword().equals(rs.getString("password"))) {
 					stmt.close();
 					return true;
 				} else {
