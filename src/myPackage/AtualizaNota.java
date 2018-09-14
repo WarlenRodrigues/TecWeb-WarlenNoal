@@ -24,7 +24,7 @@ public class AtualizaNota extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
-		out.println("<form method='post' action='home.jsp'>");
+		out.println("<form method='post'>");
 		out.println("ID da nota: <input type='number' name='nota_id'><br>");
 		out.println("Título: <input type='text' name='title'><br>");
 		out.println("Conteúdo: <textarea name='content' cols='30' rows='7'> </textarea><br>");
@@ -32,9 +32,8 @@ public class AtualizaNota extends HttpServlet {
 		out.println("</form>");
 		out.println("<body><html>");
 	}
-	
-		
-		
+
+
 	@Override
 	protected void doPost (HttpServletRequest request,
 			HttpServletResponse response)
@@ -51,10 +50,12 @@ public class AtualizaNota extends HttpServlet {
 			
 			dao.alteraNota(nota);
 			
-//			PrintWriter out = response.getWriter();
-//			out.println("<html><body>");
-//			out.println("Nota Atualizada");
-//			out.println("</body></html>");
+			PrintWriter out = response.getWriter();			
+			out.println("<html><body>");
+			out.println("Nota Alterada!");
+			out.println("<form action='home.jsp'>");
+			out.println("<input type='submit' value='OK'>");
+			out.println("</form></body></html>");
 			
 			dao.close();
 			}

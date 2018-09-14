@@ -36,10 +36,11 @@ public class RemoveNota extends HttpServlet {
 	 throws ServletException, IOException {
 	 DAO dao = new DAO();
 	 dao.removeNota(Integer.valueOf(request.getParameter("id")));
-	 PrintWriter out = response.getWriter();
+	 PrintWriter out = response.getWriter();			
 	 out.println("<html><body>");
-	 out.println("Nota Removida");
-	 out.println("</body></html>");
-	 dao.close();
+	 out.println("Nota Removida!");
+	 out.println("<form action='home.jsp'>");
+	 out.println("<input type='submit' value='OK'>");
+	 out.println("</form></body></html>");
 	 }
 }

@@ -34,6 +34,7 @@ public class ListaNotas extends HttpServlet {
 		}
 		out.println("</table><body><html>");
 		dao.close();
+		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 	
 }

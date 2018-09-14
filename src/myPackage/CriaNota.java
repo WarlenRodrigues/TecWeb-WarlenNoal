@@ -24,10 +24,10 @@ public class CriaNota extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
-		out.println("<form method='post' action='home.jsp'>");
+		out.println("<form method='post'>");
 		out.println("Título: <input type='text' name='title'><br>");
 		out.println("Conteúdo: <textarea name='content' cols='30' rows='7'> </textarea><br>");
-		out.println("<input type='submit' value='Submit'>");
+		out.println("<a href='home.jsp'><input type='submit' value='Submit'></a>");
 		out.println("</form>");
 		out.println("<body><html>");
 		}
@@ -47,10 +47,12 @@ public class CriaNota extends HttpServlet {
 			
 			dao.adicionaNota(nota);
 
-//			PrintWriter out = response.getWriter();
-//			out.println("<html><body>");
-//			out.println("Nota adicionada: " + nota.getTitle());
-//			out.println("</body></html>");
+			PrintWriter out = response.getWriter();
+			out.println("<html><body>");
+			out.println("Nota Adicionada!");
+			out.println("<form action='home.jsp'>");
+			out.println("<input type='submit' value='OK'>");
+			out.println("</form></body></html>");
 			
 			dao.close();
 			}
