@@ -208,7 +208,7 @@ public class DAO {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, nota.getTitle());
 			stmt.setString(2, nota.getContent());
-			stmt.setInt(3, nota.getId());
+			stmt.setLong(3, nota.getId());
 			stmt.execute();
 			stmt.close();
 

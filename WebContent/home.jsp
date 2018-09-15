@@ -37,6 +37,7 @@
     			<p class="card-text"><%=nota.getContent()%></p>
 					<div class="input-group btn-group align-bottom" role="group">
 						<form action='atualizanota' method='GET'>
+						<input type="text" name="id" value="<%=nota.getId()%>" style="display: none">
 						<button type='submit' class="bg-light btn btn-outline-warning btn-sm btn-secondary rounded border border-warning text-warning m-1"><i class="far fa-edit"></i></button></form>
 	
 						<form action='removenota' method="POST">

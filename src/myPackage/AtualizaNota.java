@@ -25,7 +25,6 @@ public class AtualizaNota extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("<form method='post'>");
-		out.println("ID da nota: <input type='number' name='nota_id'><br>");
 		out.println("Título: <input type='text' name='title'><br>");
 		out.println("Conteúdo: <textarea name='content' cols='30' rows='7'> </textarea><br>");
 		out.println("<input type='submit' value='Submit'>");
@@ -44,20 +43,21 @@ public class AtualizaNota extends HttpServlet {
 			Notas nota = new Notas();
 //			Users user = new Users();
 			
-			nota.setId(Integer.valueOf(request.getParameter("nota_id")));
+			nota.setId(Integer.valueOf(request.getParameter("id")));
 			nota.setTitle(request.getParameter("title"));
 			nota.setContent(request.getParameter("content"));
 			
 			dao.alteraNota(nota);
 			
-			PrintWriter out = response.getWriter();			
-			out.println("<html><body>");
-			out.println("Nota Alterada!");
-			out.println("<form action='home.jsp'>");
-			out.println("<input type='submit' value='OK'>");
-			out.println("</form></body></html>");
+//			PrintWriter out = response.getWriter();			
+//			out.println("<html><body>");
+//			out.println("Nota Alterada!");
+//			out.println("<form action='home.jsp'>");
+//			out.println("<input type='submit' value='OK'>");
+//			out.println("</form></body></html>");
 			
 			dao.close();
+			request.getRequestDispatcher("home.jsp").forward(request, response);
 			}
 			
 }
