@@ -51,14 +51,13 @@ public class CriaUser extends HttpServlet {
 			user.setEmail(request.getParameter("email"));
 			user.setPassword(request.getParameter("password"));
 			
-			dao.adicionaUser(user);
-			
-			PrintWriter out = response.getWriter();
-			out.println("<html><body>");
-			out.println("Bem Vindo(a) " + user.getName());
-			out.println("</body></html>");
-			
+			dao.adicionaUser(user);		
 			dao.close();
+			
+			request.setAttribute("userId", user.getId());
+			request.setAttribute("Username", user.getUsername());
+
+			request.getRequestDispatcher("home.jsp").forward(request, response);
 			}
 	
 	

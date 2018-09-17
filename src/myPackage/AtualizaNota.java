@@ -41,22 +41,19 @@ public class AtualizaNota extends HttpServlet {
 			DAO dao = new DAO();
 			
 			Notas nota = new Notas();
-//			Users user = new Users();
 			
 			nota.setId(Integer.valueOf(request.getParameter("id")));
 			nota.setTitle(request.getParameter("title"));
 			nota.setContent(request.getParameter("content"));
+			nota.setUserID(Integer.valueOf(request.getParameter("user_id")));
+			nota.setUsername(request.getParameter("username"));
 			
 			dao.alteraNota(nota);
-			
-//			PrintWriter out = response.getWriter();			
-//			out.println("<html><body>");
-//			out.println("Nota Alterada!");
-//			out.println("<form action='home.jsp'>");
-//			out.println("<input type='submit' value='OK'>");
-//			out.println("</form></body></html>");
-			
 			dao.close();
+			
+			request.setAttribute("userId", nota.getUserID());
+			request.setAttribute("Username", nota.getUsername());
+
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			}
 			

@@ -25,13 +25,23 @@ public class RemoveNota extends HttpServlet {
 	}
 
 	@Override
-	 protected void doPost(HttpServletRequest request,
-	 HttpServletResponse response)
-	 throws ServletException, IOException {
-	 DAO dao = new DAO();
-	 dao.removeNota(Integer.valueOf(request.getParameter("id")));
-	 dao.close();
-	 request.getRequestDispatcher("home.jsp").forward(request, response);
+	protected void doPost(HttpServletRequest request,
+	HttpServletResponse response)
+	throws ServletException, IOException {
+		
+	Notas nota =  new Notas();
+	 
+	nota.setUserID(Integer.valueOf(request.getParameter("user_id")));
+	nota.setUsername(request.getParameter("username"));
+
+	DAO dao = new DAO();
+	dao.removeNota(Integer.valueOf(request.getParameter("id")));
+	dao.close();
+	
+	request.setAttribute("userId", nota.getUserID());
+	request.setAttribute("Username", nota.getUsername());
+
+	request.getRequestDispatcher("home.jsp").forward(request, response);
 
 	 }
 }

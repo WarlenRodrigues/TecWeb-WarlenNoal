@@ -22,17 +22,17 @@ public class ListaNotas extends HttpServlet {
 		
 		DAO dao = new DAO();
 		
-		List<Notas> notas = dao.getListaNotas();
-		
-		PrintWriter out = response.getWriter();
-		out.println("<html><body><table border='1'>");
-		out.println("<tr><td>id</td><td>Título</td><td>Conteúdo</td>");
-		for (Notas nota : notas) {
-			out.println("<tr><td>" + nota.getId() +	"</td>");
-			out.println("<td>" + nota.getTitle() +	"</td>");
-			out.println("<td>" + nota.getContent() +	"</td>");
-		}
-		out.println("</table><body><html>");
+//		List<Notas> notas = dao.getListaNotas(Integer UserID);
+//		
+//		PrintWriter out = response.getWriter();
+//		out.println("<html><body><table border='1'>");
+//		out.println("<tr><td>id</td><td>Título</td><td>Conteúdo</td>");
+//		for (Notas nota : notas) {
+//			out.println("<tr><td>" + nota.getId() +	"</td>");
+//			out.println("<td>" + nota.getTitle() +	"</td>");
+//			out.println("<td>" + nota.getContent() +	"</td>");
+//		}
+//		out.println("</table><body><html>");
 		dao.close();
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}

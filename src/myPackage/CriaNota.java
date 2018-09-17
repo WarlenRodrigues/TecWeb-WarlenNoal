@@ -40,21 +40,19 @@ public class CriaNota extends HttpServlet {
 			DAO dao = new DAO();
 			
 			Notas nota = new Notas();
-//			Users user = new Users();
-			
+
 			nota.setTitle(request.getParameter("title"));
 			nota.setContent(request.getParameter("content"));
+			nota.setUserID(Integer.valueOf(request.getParameter("user_id")));
+			nota.setUsername(request.getParameter("username"));
 			
-			dao.adicionaNota(nota);
-
-			PrintWriter out = response.getWriter();
-			out.println("<html><body>");
-			out.println("Nota Adicionada!");
-			out.println("<form action='home.jsp'>");
-			out.println("<input type='submit' value='OK'>");
-			out.println("</form></body></html>");
+			dao.adicionaNota(nota, nota.getUserID());
+			
+			request.setAttribute("userId", nota.getUserID());
+			request.setAttribute("Username", nota.getUsername());
 			
 			dao.close();
+			request.getRequestDispatcher("home.jsp").forward(request, response);
 			}
 			
 }

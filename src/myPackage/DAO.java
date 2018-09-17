@@ -88,6 +88,45 @@ public class DAO {
 	return users;
 	}
 	
+	public Users setUser(String Username){
+		
+		PreparedStatement stmt = null;
+		try {
+			stmt = connection.prepareStatement("SELECT * FROM user WHERE username=?");
+			stmt.setString(1, Username);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ResultSet rs = null;
+		try {
+			rs = stmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {	Users user = new Users();
+				user.setId(rs.getInt("user_id"));
+				user.setName(rs.getString("name"));
+				user.setSurname(rs.getString("surname"));
+				user.setUsername(rs.getString("username"));
+				user.setAge(rs.getInt("age"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));				
+		
+			rs.close();
+			stmt.close();
+			
+			return user;
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null; 
+	}	
+	
 	public void adicionaUser(Users user) {
 		String sql = "INSERT INTO user" + "(name, surname, username, age, email, password) values(?,?,?,?,?,?)";
 		try {
@@ -147,13 +186,15 @@ public class DAO {
 
 // TRATANDO NOTAS
 
-	public List<Notas> getListaNotas(){
+	public List<Notas> getListaNotas(Integer UserID){
 		
 		List<Notas> notas = new ArrayList<Notas>();
 		
 		PreparedStatement stmt = null;
 		try {
-			stmt = connection.prepareStatement("SELECT * FROM note");
+			stmt = connection.prepareStatement("SELECT * FROM note WHERE user_id=?");
+			stmt.setInt(1, UserID);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -186,14 +227,14 @@ public class DAO {
 	}
 	
 	
-	public void adicionaNota(Notas nota) {
+	public void adicionaNota(Notas nota, Integer UserID) {
 	String sql = "INSERT INTO note" + "(title, content, user_id) values(?,?,?)";
 	try {
 		PreparedStatement stmt = null;
 		stmt = connection.prepareStatement(sql);
 		stmt.setString(1, nota.getTitle());
 		stmt.setString(2, nota.getContent());
-		stmt.setInt(3, 0);;
+		stmt.setInt(3, UserID);
 		stmt.execute();
 		stmt.close();
 	} catch (SQLException e) {
@@ -235,28 +276,36 @@ public class DAO {
 	
 //	AUTENTICAÇÃO/LOGIN
 	
-	public boolean autenticaUsuario(Tentativas tentativa) {
+	public Users autenticaUsuario(Tentativas tentativa) {
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		try {
-			System.out.println("Entrou na função");
-			stmt = connection.prepareStatement("SELECT password FROM user WHERE username=?");
+			stmt = connection.prepareStatement("SELECT * FROM user WHERE username=?");
 			stmt.setString(1, tentativa.getUsername());
-			System.out.println("Ta pegando tudo");
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				System.out.println("Entrou no If, logo, o usuário está na base de dados");
-				System.out.println(tentativa.getPassword());
 				if(tentativa.getPassword().equals(rs.getString("password"))) {
+					Users user = new Users();
+					
+					user.setId(rs.getInt("user_id"));
+					user.setName(rs.getString("name"));
+					user.setSurname(rs.getString("surname"));
+					user.setUsername(rs.getString("username"));
+					user.setAge(rs.getInt("age"));
+					user.setEmail(rs.getString("email"));
+					user.setPassword(rs.getString("password"));		
+					
 					stmt.close();
-					return true;
+					
+					return user;
+					
 				} else {
 					stmt.close();
-					return false;
+					return null;
 				}
 			} else {
 				stmt.close();
-				return false;
+				return null;
 			}	
 
 		} catch (SQLException e) {
@@ -264,7 +313,7 @@ public class DAO {
 			e.printStackTrace();
 			}
 		
-		return false;
+		return null;
 	}
 	
 	

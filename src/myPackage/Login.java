@@ -41,12 +41,11 @@ public class Login extends HttpServlet {
 			tentativa.setPassword(request.getParameter("password"));
 		
 			dao.autenticaUsuario(tentativa);
-
-			PrintWriter out = response.getWriter();
-			out.println("<html><body>");
-			out.println(dao.autenticaUsuario(tentativa));
-			out.println("</body></html>");
 			
+			request.setAttribute("userId", dao.autenticaUsuario(tentativa).getId());
+			request.setAttribute("Username", dao.autenticaUsuario(tentativa).getUsername());
+			request.getRequestDispatcher("home.jsp").forward(request, response);
+
 			dao.close();
 		}	
 }	
