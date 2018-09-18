@@ -53,11 +53,8 @@ public class CriaUser extends HttpServlet {
 			
 			dao.adicionaUser(user);		
 			dao.close();
-			
-			request.setAttribute("userId", user.getId());
-			request.setAttribute("Username", user.getUsername());
 
-			request.getRequestDispatcher("home.jsp").forward(request, response);
+			request.getRequestDispatcher("login.java").forward(request, response);
 			}
 	
 	

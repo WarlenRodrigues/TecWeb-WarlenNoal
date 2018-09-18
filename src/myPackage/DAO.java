@@ -106,14 +106,18 @@ public class DAO {
 			e.printStackTrace();
 		}
 		
-		try {	Users user = new Users();
+		try {	
+			
+			Users user = new Users();
+			while (rs.next()) {
 				user.setId(rs.getInt("user_id"));
 				user.setName(rs.getString("name"));
 				user.setSurname(rs.getString("surname"));
 				user.setUsername(rs.getString("username"));
 				user.setAge(rs.getInt("age"));
 				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("password"));				
+				user.setPassword(rs.getString("password"));
+			}
 		
 			rs.close();
 			stmt.close();
