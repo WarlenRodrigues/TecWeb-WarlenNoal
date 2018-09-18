@@ -11,7 +11,8 @@ name VARCHAR(20) NOT NULL,
 surname VARCHAR(20), 
 username VARCHAR(15) NOT NULL UNIQUE, 
 age INT(2), 
-email VARCHAR(89)
+email VARCHAR(89),
+password VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE note (
