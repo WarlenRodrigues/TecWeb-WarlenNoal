@@ -20,16 +20,21 @@
     </div>   
   </div>
   <div class="row">
-	<div class=col-10><p class="m-2 p-1">Crie, edite e remova suas notas. Organizar suas atividades e lembretes nunca foi tão simples!</p></div>
-    <div class="col-2">
-    	<form action="crianota" method='GET'>
-    	<input type="number" name="user_id" value="<%=request.getAttribute("userId")%>" style="display: none">
-    	<input type="text" name="username" value="<%=request.getAttribute("Username")%>" style="display: none">
-		<button type='submit' class="btn btn-success btn-lg rounded text-loght"><i class="fas fa-plus"></i></button></form>
-    </div> 
+	<div class=col><p class="m-2 p-1">Crie, edite e remova suas notas. Organizar suas atividades e lembretes nunca foi tão simples!</p></div>
   </div>	
   
   <div class="input-group mt-5">
+
+    <div class="card mt-4 mb-2 ml-4 mr-4 p-1 text-dark" style="width: 17rem; min-height: 15rem;">
+    	<div class="card-body">
+       	<form action="crianota" method='POST'>
+    	<input type="number" name="user_id" value="<%=request.getAttribute("userId")%>" style="display: none">
+    	<input type="text" name="username" value="<%=request.getAttribute("Username")%>" style="display: none">
+    	<h5 class="card-title"><input type='text' name='title' placeholder="Titulo da Nota" style="width: 100%;" class="rounded border-0"></h5>
+    	<p class="card-text"><textarea rows='4' name='content' placeholder="Corpo da Nota" style="width: 100%; heigh: 100%; resize: none" class="rounded border-0"></textarea></p>
+    	<button type='submit' class="btn btn-success btn-lg rounded text-loght"><i class="fas fa-check"></i></button></form>
+    	</div>
+	</div>
 
 	<% List<Notas> notas = dao.getListaNotas((Integer)request.getAttribute("userId"));
 	for (Notas nota : notas){
