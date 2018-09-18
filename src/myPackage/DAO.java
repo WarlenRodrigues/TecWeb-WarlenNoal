@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import myPackage.Users;
@@ -226,7 +227,8 @@ public class DAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+        Collections.reverse(notas); 
+        
 	return notas;
 	}
 	
