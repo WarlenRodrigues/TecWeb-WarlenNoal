@@ -21,21 +21,33 @@
     <button class="btn btn-sm btn-success my-2 my-sm-0" type="submit">Login</button>
   </form>
 </nav>
-<div class="container">
-<form action="criauser" method="POST" class="needs-validation" novalidate style="padding-top: 100px;">
+
+<div class="container ">
+<div class="row" style="padding-top: 150px;">
+<div clas="col-7" style="padding-right: 200px;">
+  <h1 class="display-4">Bem vindo(a)</h1>
+  <h4>Este é o InsperNotes System. Aqui<br>
+	você pode criar, editar e excluir notas <br>
+	para facilitar sua organização cotidiana.</h4>
+</div>
+<div class="col-5">
+<form action="criauser" method="POST" class="needs-validation" novalidate">
   <div class="form-row">
-    <div class="col-md-4 mb-3">
+    <div class="col-md-6 mb-3">
       <label for="validationCustom01">Nome</label>
       <input type="text" class="form-control" id="validationCustom01" placeholder="José" name="name" required>
       <div class="valid-feedback">
        	Aceito.
       </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-6 mb-3">
       <label for="validationCustom02">Sobrenome</label>
       <input type="text" class="form-control" id="validationCustom02" placeholder="Silva" name="surname" required>
     </div>
-    <div class="col-md-4 mb-3">
+  </div>
+
+   <div class="form-row">  
+     <div class="col-md-6 mb-3">
       <label for="validationCustomUsername">Nome de Usuario</label>
       <div class="input-group">
         <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="username" required>
@@ -44,23 +56,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationCustom03">Idade</label>
-      <input type="number" class="form-control" id="validationCustom03" name="age" min="1" required>
-      <div class="invalid-feedback">
-        Adicione uma idade válda.
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom04">E-mail</label>
-      <input type="email" class="form-control" id="validationCustom04" placeholder="exemplo@exemplo.com" name="email" required>
-      <div class="invalid-feedback">
-        Por favor, insira um e-mail válido.
-      </div>
-    </div>
-    <div class="col-sm-3 mb-3">
+    
+    <div class="col-sm-6 mb-3">
       <label for="validationCustom05">Senha</label>
       <input type="password" class="form-control" id="validationCustom05" minlength="6" name="password" required>
       <div class="invalid-feedback">
@@ -68,8 +65,28 @@
       </div>
     </div>
   </div>
+  
+    <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom03">Idade</label>
+      <input type="number" class="form-control" id="validationCustom03" name="age" min="1" required>
+      <div class="invalid-feedback">
+        Adicione uma idade válda.
+      </div>
+    </div>
+    <div class="col-md-9 mb-3">
+      <label for="validationCustom04">E-mail</label>
+      <input type="email" class="form-control" id="validationCustom04" placeholder="exemplo@exemplo.com" name="email" required>
+      <div class="invalid-feedback">
+        Por favor, insira um e-mail válido.
+      </div>
+    </div>
+   </div>
+  
   <button class="btn btn-md btn-success" type="submit">Cadastrar</button>
 </form>
+</div>
+</div>
 </div>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
