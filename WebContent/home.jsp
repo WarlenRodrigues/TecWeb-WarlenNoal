@@ -14,7 +14,13 @@
 </head>
 <body class="bg-dark text-light mt-3" style="overflow-x: hidden !important">
 	<%DAO dao = new DAO();%>
-  <div class="row container">
+  <nav class="container-fluid navbar navbar-dark fixed-top bg-secondary">
+  <a class="navbar-brand">InsperNotes System</a>
+  <form action="login" method="POST" class="form-inline">
+    <button class="btn btn-sm btn-danger my-2 my-sm-0" type="submit">Sair</button>
+  </form>
+</nav>
+  <div class="row container" style="padding-top: 50px;">
     <div class="col">
     	<h4 class="m-2 p-1">Olá, <%=request.getAttribute("Username")%>, este é o seu Painel de Notas</h4>
     </div>   
@@ -48,7 +54,7 @@
     					<input type="text" name="user_id" value="<%=request.getAttribute("userId")%>" style="display: none">
 			    		<h5 class="card-title"><input type='text' name='title' style="width: 100%;" class="rounded border-0" value="<%=nota.getTitle()%>" autocomplete="off"></h5>
     					<h5 class="card-text"><textarea rows='4' name='content' style="width: 100%; heigh: 100%; resize: none" class="rounded border-0" autocomplete="off"><%=nota.getContent()%></textarea></p>
-						<button type='submit' class="bg-light btn btn-outline-warning btn-md btn-secondary rounded border border-warning text-warning m-1">Salvar</button></form>
+						<button type='submit' class="bg-light btn btn-outline-success btn-md btn-secondary rounded border border-success text-success m-1">Salvar</button></form>
 	
 						<input type="text" name="id" value="<%=nota.getId()%>" style="display: none">
     					<input type="text" name="username" value="<%=request.getAttribute("Username")%>" style="display: none">

@@ -132,7 +132,14 @@ public class DAO {
 		return null; 
 	}	
 	
-	public void adicionaUser(Users user) {
+	public boolean adicionaUser(Users user) {
+		List<Users> users = getListaUser();
+		for (Users alreadyIn : users) {
+			if(user.getUsername().equals(alreadyIn.getUsername())) {
+			return false; 
+				}			
+			}
+						
 		String sql = "INSERT INTO user" + "(name, surname, username, age, email, password) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = null;
@@ -145,10 +152,12 @@ public class DAO {
 			stmt.setString(6, user.getPassword());
 			stmt.execute();
 			stmt.close();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	public void alteraUser(Users user) {

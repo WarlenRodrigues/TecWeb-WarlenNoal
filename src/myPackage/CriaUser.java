@@ -40,7 +40,8 @@ public class CriaUser extends HttpServlet {
 	protected void doPost (HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
-		
+			
+			PrintWriter out = response.getWriter();
 			DAO dao = new DAO();
 			
 			Users user = new Users();
@@ -51,11 +52,19 @@ public class CriaUser extends HttpServlet {
 			user.setEmail(request.getParameter("email"));
 			user.setPassword(request.getParameter("password"));
 			
-			dao.adicionaUser(user);	
+			if(dao.adicionaUser(user)) {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+								
+			}else {
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Usuario já existente. Por favor defina um Nome de Usuario diferente');");
+				out.println("location='index.jsp';");
+				out.println("</script>");
+				}
+			
 			dao.close();
 
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-			}
+}
 	
 	
 	

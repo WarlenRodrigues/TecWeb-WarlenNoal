@@ -34,16 +34,13 @@
     <div class="col-md-4 mb-3">
       <label for="validationCustom02">Sobrenome</label>
       <input type="text" class="form-control" id="validationCustom02" placeholder="Silva" name="surname" required>
-      <div class="valid-feedback">
-        Aceito.
-      </div>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationCustomUsername">Nome de Usuario</label>
       <div class="input-group">
         <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="username" required>
         <div class="invalid-feedback">
-          Por favor, tente outro nome de usuário.
+ 			Defina um nome de usuario
         </div>
       </div>
     </div>
