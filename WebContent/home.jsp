@@ -14,12 +14,12 @@
 </head>
 <body class="bg-dark text-light mt-3" style="overflow-x: hidden !important">
 	<%DAO dao = new DAO();%>
-  <div class="row">
+  <div class="row container">
     <div class="col">
     	<h4 class="m-2 p-1">Olá, <%=request.getAttribute("Username")%>, este é o seu Painel de Notas</h4>
     </div>   
   </div>
-  <div class="row">
+  <div class="row container">
 	<div class=col><p class="m-2 p-1">Crie, edite e remova suas notas. Organizar suas atividades e lembretes nunca foi tão simples!</p></div>
   </div>	
   
@@ -32,7 +32,7 @@
     	<input type="text" name="username" value="<%=request.getAttribute("Username")%>" style="display: none">
     	<h5 class="card-title"><input type='text' name='title' placeholder="Titulo da Nota" style="width: 100%;" class="rounded border-0"></h5>
     	<p class="card-text"><textarea rows='4' name='content' placeholder="Corpo da Nota" style="width: 100%; heigh: 100%; resize: none" class="rounded border-0"></textarea></p>
-    	<button type='submit' class="btn btn-success btn-lg rounded text-loght"><i class="fas fa-check"></i></button></form>
+    	<button type='submit' class="btn btn-success btn-sm rounded text-loght"><i class="fas fa-check"></i></button></form>
     	</div>
 	</div>
 
@@ -41,20 +41,19 @@
 	%>
 		<div class="card mt-4 mb-2 ml-4 mr-4 p-1 text-dark" style="width: 17rem; min-height: 15rem;">
   			<div class="card-body">
-    			<h5 class="card-title"><%=nota.getTitle()%></h5>
-    			<p class="card-text"><%=nota.getContent()%></p>
 					<div class="input-group btn-group align-bottom" role="group">
-						<form action='atualizanota' method='GET'>
+						<form action='atualizanota' method='POST'>
 						<input type="text" name="id" value="<%=nota.getId()%>" style="display: none">
     					<input type="text" name="username" value="<%=request.getAttribute("Username")%>" style="display: none">
     					<input type="text" name="user_id" value="<%=request.getAttribute("userId")%>" style="display: none">
+			    		<h5 class="card-title"><input type='text' name='title' style="width: 100%;" class="rounded border-0" value="<%=nota.getTitle()%>" autocomplete="off"></h5>
+    					<h5 class="card-text"><textarea rows='4' name='content' style="width: 100%; heigh: 100%; resize: none" class="rounded border-0" autocomplete="off"><%=nota.getContent()%></textarea></p>
 						<button type='submit' class="bg-light btn btn-outline-warning btn-sm btn-secondary rounded border border-warning text-warning m-1"><i class="far fa-edit"></i></button></form>
 	
-						<form action='removenota' method="POST">
 						<input type="text" name="id" value="<%=nota.getId()%>" style="display: none">
     					<input type="text" name="username" value="<%=request.getAttribute("Username")%>" style="display: none">
     					<input type="text" name="user_id" value="<%=request.getAttribute("userId")%>" style="display: none">
-						<button type='submit' class="bg-light btn btn-outlinr-danger btn-sm btn-secondary rounded border border-danger text-danger m-1"><i class="far fa-trash-alt"></i></button></form>
+						<button type='submit' formaction='removenota' class="bg-light btn btn-outlinr-danger btn-sm btn-secondary rounded border border-danger text-danger m-1"><i class="far fa-trash-alt"></i></button></form>
  					</div>
   			</div>
 		</div>

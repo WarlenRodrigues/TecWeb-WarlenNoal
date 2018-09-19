@@ -20,17 +20,7 @@ public class CriaNota extends HttpServlet {
 	@Override
 	protected void doGet (HttpServletRequest request,
 			HttpServletResponse response)
-			throws ServletException, IOException {
-		
-//		PrintWriter out = response.getWriter();
-//		out.println("<html><body>");
-//		out.println("<form method='post'>");
-//		out.println("Título: <input type='text' name='title'><br>");
-//		out.println("Conteúdo: <textarea name='content' cols='30' rows='7'> </textarea><br>");
-//		out.println("<a href='home.jsp'><input type='submit' value='Submit'></a>");
-//		out.println("</form>");
-//		out.println("<body><html>");
-		}
+			throws ServletException, IOException {}
 	
 	@Override
 	protected void doPost (HttpServletRequest request,
