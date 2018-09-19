@@ -57,7 +57,7 @@ public class CriaUser extends HttpServlet {
 								
 			}else {
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Usuario já existente. Por favor defina um Nome de Usuario diferente');");
+				out.println("alert('Usuario já existente. Por favor defina um Nome de Usuario diferente.');");
 				out.println("location='index.jsp';");
 				out.println("</script>");
 				}
