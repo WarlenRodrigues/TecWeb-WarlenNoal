@@ -30,9 +30,9 @@
        	<form action="crianota" method='POST'>
     	<input type="number" name="user_id" value="<%=request.getAttribute("userId")%>" style="display: none">
     	<input type="text" name="username" value="<%=request.getAttribute("Username")%>" style="display: none">
-    	<h5 class="card-title"><input type='text' name='title' placeholder="Titulo da Nota" style="width: 100%;" class="rounded border-0"></h5>
-    	<p class="card-text"><textarea rows='4' name='content' placeholder="Corpo da Nota" style="width: 100%; heigh: 100%; resize: none" class="rounded border-0"></textarea></p>
-    	<button type='submit' class="btn btn-success btn-sm rounded text-loght"><i class="fas fa-check"></i></button></form>
+    	<h5 class="card-title"><input type='text' name='title' placeholder="Titulo da Nota" style="width: 100%;" class="rounded border-0" autocomplete="off"></h5>
+    	<p class="card-text"><textarea rows='4' name='content' placeholder="Corpo da Nota" style="width: 100%; heigh: 100%; resize: none" class="rounded border-0" autocomplete="off"></textarea></p>
+    	<button type='submit' class="btn btn-success btn-md rounded text-loght"><i class="fas fa-check"></i></button></form>
     	</div>
 	</div>
 
@@ -48,12 +48,12 @@
     					<input type="text" name="user_id" value="<%=request.getAttribute("userId")%>" style="display: none">
 			    		<h5 class="card-title"><input type='text' name='title' style="width: 100%;" class="rounded border-0" value="<%=nota.getTitle()%>" autocomplete="off"></h5>
     					<h5 class="card-text"><textarea rows='4' name='content' style="width: 100%; heigh: 100%; resize: none" class="rounded border-0" autocomplete="off"><%=nota.getContent()%></textarea></p>
-						<button type='submit' class="bg-light btn btn-outline-warning btn-sm btn-secondary rounded border border-warning text-warning m-1"><i class="far fa-edit"></i></button></form>
+						<button type='submit' class="bg-light btn btn-outline-warning btn-md btn-secondary rounded border border-warning text-warning m-1">Salvar</button></form>
 	
 						<input type="text" name="id" value="<%=nota.getId()%>" style="display: none">
     					<input type="text" name="username" value="<%=request.getAttribute("Username")%>" style="display: none">
     					<input type="text" name="user_id" value="<%=request.getAttribute("userId")%>" style="display: none">
-						<button type='submit' formaction='removenota' class="bg-light btn btn-outlinr-danger btn-sm btn-secondary rounded border border-danger text-danger m-1"><i class="far fa-trash-alt"></i></button></form>
+						<button type='submit' formaction='removenota' class="bg-light btn btn-outline-danger btn-md btn-secondary rounded border border-danger text-danger m-1">Excluir</button></form>
  					</div>
   			</div>
 		</div>

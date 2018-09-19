@@ -17,16 +17,7 @@ public class Login extends HttpServlet {
 	protected void doGet (HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		PrintWriter out = response.getWriter();
-		
-		out.println("<html><body>");
-		out.println("<form method='post'>");
-		out.println("Usuário: <input type='text' name='username'><br>");
-		out.println("Senha: <input type='password' name='password'><br>");
-		out.println("<input type='submit' value='Entrar'>");
-		out.println("</form>");
-		out.println("<body><html>");
+
 		}
 	
 	@Override

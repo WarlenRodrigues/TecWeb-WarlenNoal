@@ -51,10 +51,10 @@ public class CriaUser extends HttpServlet {
 			user.setEmail(request.getParameter("email"));
 			user.setPassword(request.getParameter("password"));
 			
-			dao.adicionaUser(user);		
+			dao.adicionaUser(user);	
 			dao.close();
 
-			request.getRequestDispatcher("login.java").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 	
 	
