@@ -39,8 +39,7 @@ public class Login extends HttpServlet {
 				request.setAttribute("Username", autenticatedUser.getName());
 				request.getRequestDispatcher("home.jsp").forward(request, response);
 				
-			}
-			else {
+			}else {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Usuario ou senha incorretos');");
 				out.println("location='index.jsp';");

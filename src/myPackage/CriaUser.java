@@ -20,21 +20,7 @@ public class CriaUser extends HttpServlet {
 	@Override
 	protected void doGet (HttpServletRequest request,
 			HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		PrintWriter out = response.getWriter();
-		out.println("<html><body>");
-		out.println("<form method='post'>");
-		out.println("Nome: <input type='text' name='name'><br>");
-		out.println("Sobrenome: <input type='text' name='surname'><br>");
-		out.println("Usuario: <input type='text' name='username'><br>");
-		out.println("Idade: <input type='number' name='age' step='1'><br>");
-		out.println("E-mail: <input type='text' name='email'><br>");
-		out.println("Senha: <input type='password' name='password'><br>");		
-		out.println("<input type='submit' value='Submit'>");
-		out.println("</form>");
-		out.println("<body><html>");
-		}
+			throws ServletException, IOException {}
 	
 	@Override
 	protected void doPost (HttpServletRequest request,
@@ -54,18 +40,14 @@ public class CriaUser extends HttpServlet {
 			
 			if(dao.adicionaUser(user)) {
 				request.getRequestDispatcher("index.jsp").forward(request, response);
-								
 			}else {
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Usuario já existente. Por favor defina um Nome de Usuario diferente.');");
 				out.println("location='index.jsp';");
 				out.println("</script>");
 				}
-			
+		
 			dao.close();
 
-}
-	
-	
-	
+	}	
 }

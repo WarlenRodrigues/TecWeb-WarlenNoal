@@ -1,6 +1,5 @@
 package myPackage;
 import java.io.*;
-import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
@@ -21,18 +20,6 @@ public class ListaNotas extends HttpServlet {
 		throws ServletException, IOException {
 		
 		DAO dao = new DAO();
-		
-//		List<Notas> notas = dao.getListaNotas(Integer UserID);
-//		
-//		PrintWriter out = response.getWriter();
-//		out.println("<html><body><table border='1'>");
-//		out.println("<tr><td>id</td><td>Título</td><td>Conteúdo</td>");
-//		for (Notas nota : notas) {
-//			out.println("<tr><td>" + nota.getId() +	"</td>");
-//			out.println("<td>" + nota.getTitle() +	"</td>");
-//			out.println("<td>" + nota.getContent() +	"</td>");
-//		}
-//		out.println("</table><body><html>");
 		dao.close();
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}

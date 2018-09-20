@@ -27,8 +27,7 @@ public class CriaNota extends HttpServlet {
 			HttpServletResponse response)
 			throws ServletException, IOException {
 		
-			DAO dao = new DAO();
-			
+			DAO dao = new DAO();		
 			Notas nota = new Notas();
 
 			nota.setTitle(request.getParameter("title"));
@@ -42,6 +41,7 @@ public class CriaNota extends HttpServlet {
 			request.setAttribute("Username", nota.getUsername());
 			
 			dao.close();
+			
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			}
 			
