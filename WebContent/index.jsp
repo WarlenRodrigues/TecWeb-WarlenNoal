@@ -23,12 +23,12 @@
 </nav>
 
 <div class="container ">
-<div class="row" style="padding-top: 150px;">
+<div class="row" style="padding-top: 50px;">
 <div clas="col-7" style="padding-right: 200px;">
   <h1 class="display-4">Bem vindo(a)</h1>
   <h4>Este é o InsperNotes System. Aqui<br>
 	você pode criar, editar e excluir notas <br>
-	para facilitar sua organização cotidiana.</h4>
+	para facilitar sua organização cotidiana.</h4>		
 </div>
 <div class="col-5">
 <form action="criauser" method="POST" class="needs-validation" novalidate">
@@ -87,6 +87,8 @@
 </form>
 </div>
 </div>
+<img src="images/landpage_image.png" class="p-3 img-fluid" alt="Responsive image" style="display: block; margin-left: auto; margin-right: auto; width: 70%; heigh: 70%;">
+
 </div>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
