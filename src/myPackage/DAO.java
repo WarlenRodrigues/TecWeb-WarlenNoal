@@ -24,7 +24,7 @@ public class DAO {
 				e.printStackTrace();
 			}
 			try {
-				connection = DriverManager.getConnection("jdbc:mysql://localhost/crudproject","root","Warlen1998");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost/crudproject","","");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
